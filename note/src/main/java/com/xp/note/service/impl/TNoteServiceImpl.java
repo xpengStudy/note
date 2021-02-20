@@ -1,6 +1,5 @@
 package com.xp.note.service.impl;
 
-import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -76,7 +75,7 @@ public class TNoteServiceImpl extends ServiceImpl<TNoteMapper, TNote> implements
             }
 
             // 开始时间
-            if(null!= params.getCreateTime() && StringUtils.hasLength(params.getStartTime()) ){
+            if(null!= params.getStartTime() && StringUtils.hasLength(params.getStartTime()) ){
 
                 // 开始转换时间
                 Date start = DateUtil.parse(params.getStartTime());
@@ -87,9 +86,9 @@ public class TNoteServiceImpl extends ServiceImpl<TNoteMapper, TNote> implements
             // 结束时间
             if(null!=params.getEndTime() && StringUtils.hasLength(params.getEndTime())){
                 // 开始转换时间
-                Date start = DateUtil.parse(params.getEndTime());
+                Date end = DateUtil.parse(params.getEndTime());
 
-                wrapper.le("create_time",start);
+                wrapper.le("create_time",end);
             }
 
         }

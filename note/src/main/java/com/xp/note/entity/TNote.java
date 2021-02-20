@@ -27,10 +27,6 @@ public class TNote implements Serializable {
     private String pId;
 
     /**
-     * 对应日记文件id
-     */
-    private String fileId;
-    /**
      * 日记标题
      */
     private String noteTitle;
@@ -76,13 +72,6 @@ public class TNote implements Serializable {
         this.id = id;
     }
 
-    public String getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
-    }
 
     public String getNoteTitle() {
         return noteTitle;
@@ -173,7 +162,6 @@ public class TNote implements Serializable {
         return "TNote{" +
                 "id='" + id + '\'' +
                 ", pId='" + pId + '\'' +
-                ", fileId='" + fileId + '\'' +
                 ", noteTitle='" + noteTitle + '\'' +
                 ", noteFlag='" + noteFlag + '\'' +
                 ", noteContent='" + noteContent + '\'' +

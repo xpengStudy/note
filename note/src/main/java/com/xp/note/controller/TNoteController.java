@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ *  笔记 controller
  * </p>
  *
  * @author xp123
@@ -42,6 +42,7 @@ public class TNoteController {
         try {
             noteService.saveOrUpdateNote(note);
         } catch (Exception e) {
+            log.error("新增错误！,{}",e.getMessage());
             return SimpleMessage.fail(e.getMessage());
         }
         return SimpleMessage.info(MessageCode.SUCCESS);
@@ -49,6 +50,7 @@ public class TNoteController {
     }
 
     @DeleteMapping("/deleteNoteById/{id}")
+    @ApiOperation(value = "删除笔记id" , notes = "根据笔记的id找到笔记并且删除")
     public SimpleMessage deleteNote(@PathVariable("id") String id){
 
         if(!StringUtils.hasLength(id)){
@@ -58,6 +60,7 @@ public class TNoteController {
         try {
             noteService.deleteNote(id);
         } catch (Exception e) {
+            log.error("删除错误!,{}",e.getMessage());
             return SimpleMessage.fail(e.getMessage());
         }
 
@@ -68,12 +71,11 @@ public class TNoteController {
     @ApiOperation(value = "查询所有的日记，按条件查询")
     public SimpleMessage  selectNoteByPage(@RequestBody PageVo<TNote> pageVo){
 
-
         Page<TNote> tNotePage = null;
         try {
             tNotePage = noteService.selectByPage(pageVo);
         } catch (Exception e) {
-            log.error("查询错误！",e.getMessage());
+            log.error("查询错误！,{}",e.getMessage());
             return SimpleMessage.warn("查询错误！",e.getMessage());
         }
         return SimpleMessage.info(tNotePage);
